@@ -1,0 +1,23 @@
+liip_imagine:
+    resolvers:
+        default:
+            web_path: ~
+
+    filter_sets:
+        miniature:
+            quality: 30
+            filters:
+                auto_rotate: ~                
+                downscale:
+                    max: [500,500]   
+        compression:
+            quality: 60
+            filters:
+                auto_rotate: ~                
+                downscale:
+                    max: [1500,1500]   
+        profile:
+            quality: 60
+            filters:
+                auto_rotate: ~                
+                thumbnail: { size: [300, 300], mode: outbound }  

@@ -1,0 +1,13 @@
+{% extends "base.html.twig" %}
+
+{% block title %}
+	Contenu introuvable - {{ parent() }}
+{% endblock %}
+
+{% block body %}
+	<div id="error">
+		<h2>Oops ! Le serveur a un problème...</h2>
+		<p>Essayez de recharger la page, si le disfonctionnement persiste, merci de nous contacter à l'adresse clubavironsaintais@yahoo.fr</p>
+		<p><a href="{{ path('index') }}">Cliquez ici</a> pour revenir à l'accueil :)</p>
+	</div>
+{% endblock %}

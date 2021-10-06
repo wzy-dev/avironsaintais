@@ -1,0 +1,63 @@
+{% extends "base.html.twig" %}
+
+{% block title_fb %}
+	{{ article.title }} - {{ parent() }}
+{% endblock %}
+
+{% block image_fb %}
+	{% if article.image %}{{ article.image.absolutePath | imagine_filter('compression') }}
+	{% else %}{{ parent() }}{% endif %}
+{% endblock %}
+
+{% block desc_fb %}
+	{{ article.text|striptags }}
+{% endblock %}
+
+{% block title %}
+	{{ article.title }} - {{ parent() }}
+{% endblock %}
+
+{% block body %}
+
+	<div>
+		{% set mois = {01:"Janvier", 02:"Février", 03:"Mars", 04:"Avril", 05:"Mai", 06:"Juin", 07:"Juillet", 08:"Août", 09:"Septembre", 10:"Octobre", 11:"Novembre", 12:"Décembre"} %}
+<!-- 		<div class="text_article">
+			<div class="news_title"><span style="font-weight:bold;color:#018EB2">article</span><span style="font-weight:bold;font-size:0.9em;color:#c9c9c9"> / {{ article.date|date("d") }} {{ mois[article.date|date("m")|round] }} {{ article.date|date("Y") }}</span></div> 
+			<p>{{ article.text }}</p>
+			<div class="fb-like" data-href="{{ app.request.uri }}" data-layout="button_count" data-action="like" data-size="small" data-show-faces="true" data-share="true"></div>
+		</div> -->	
+		<div class="text_article">
+			<div class="Article-header">
+				<h1 style="line-height:1.5em;color:white;margin:0 auto 1rem auto;font-size:1.5em;">{{ article.title }}</h2>
+				{% if article.image %}
+				<div style="border:2px solid white;width:15vw;margin:0em auto 1rem auto;height:15vw;overflow:hidden;border-radius:50%">
+					<img src="{{ asset(article.image.absolutePath | imagine_filter('miniature')) }}" style="width:100%;height:100%;-o-object-fit:cover;object-fit:cover;" id="image"/>
+				</div>
+				{% endif %}				
+				<div style="margin:auto">						
+					<span style="color:white;margin-right:1em;line-height:1em">Publié le {{ article.date|date("d") }} {{ mois[article.date|date("m")|round] }} {{ article.date|date("Y") }}</span>			
+					<div class="fb-like" data-href="{{ app.request.getSchemeAndHttpHost() }}{{ app.request.pathinfo }}" data-layout="button_count" data-action="like" data-size="small" data-show-faces="true" data-share="true"></div>
+				</div>
+			</div>		
+			<div style="box-shadow: -7px -7px 38px -12px rgba(0,0,0,0.75);margin:1em 0 1em 0;background: #fafafa;margin: 1em 0 1em 0;padding: 1em;">
+				{{ article.text|raw }}
+				<div class="Article-pdfBlock">
+					{% for pdf in article.pdfs %}
+						<a class="Article-pdf" href="{{ asset(pdf.absolutePath) }}" download="{{ pdf.pdf }}"><span class="icon-file-pdf"></span> {{ pdf.pdf }}</a>
+					{% endfor %}
+				</div>
+			</div>
+		</div>
+	</div>
+{% endblock %}
+{% block javascripts %}
+	<script>
+		(function(d, s, id) {
+		  var js, fjs = d.getElementsByTagName(s)[0];
+		  if (d.getElementById(id)) return;
+		  js = d.createElement(s); js.id = id;
+		  js.src = "//connect.facebook.net/fr_FR/sdk.js#xfbml=1&version=v2.7&appId=204087879970953";
+		  fjs.parentNode.insertBefore(js, fjs);
+		}(document, 'script', 'facebook-jssdk'));
+	</script>
+{% endblock %}

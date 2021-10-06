@@ -1,0 +1,15 @@
+{% extends "base.html.twig" %}
+
+{% block title %}
+	Galerie - {{ parent() }}
+{% endblock %}
+
+{% block body %}
+	<span id="first_pagination">{{ knp_pagination_render(pagination) }}</span>
+	<div id="galerie"><img src="{{asset('img/loader.gif')}}" style="display:block;width:100px;margin:auto" id="loader"/></div>
+	<span id="last_pagination">{{ knp_pagination_render(pagination) }}</span>
+{% endblock %}
+
+{% block javascripts %}
+	<script src="{{ asset('js/galerie.js') }}"></script>
+{% endblock %}

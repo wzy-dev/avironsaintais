@@ -1,0 +1,68 @@
+{% extends "base.html.twig" %}
+
+{% block title %}
+	Découvrir - {{ parent() }}
+{% endblock %}
+
+{% block body %}
+
+	<div>
+		<div class="block_decouvrir">
+			<div class="text_decouvrir">
+				<div>
+					<h2>Son histoire</h2>
+					<span>
+						Le club d'aviron Saintais fut créé en 1862. Situé au bord de la Charente, il offre aux rameurs un cadre idéal.<br />
+						&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Il comporte plus d'une centaine de licenciés annuels et constitue une association de loi 1901 affiliée à la Fédération Française d'Aviron.<br />
+						&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Celui-ci bénéficie du titre d'École française d'aviron 3 étoiles.
+					</span>
+				</div>
+			</div>
+			<div class="image_decouvrir"><img style="width:100%" src="{{asset('img/decouvrir1.jpg')}}"/>
+			</div>
+		</div>
+		<div class="block_decouvrir">
+			<div class="text_decouvrir">
+				<div>
+					<h2>Son fonctionnement</h2>
+					<span>
+						L'aviron est accessible aux compétiteurs comme aux personnes recherchant une pratique exclusivement loisir.<br />
+						&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;L’âge minimum requis est de 11 ans et pour une première inscription pour les mineurs il convient de présenter un brevet de natation de 25m minimum, et chaque catégorie dispose de ses propres horaires d’entrainement encadrées par un entraineur qualifié..
+					</span>
+				</div>
+			</div>
+			<div class="image_decouvrir"><img style="width:100%" src="{{asset('img/decouvrir2.jpg')}}"/>
+			</div>
+		</div>
+		<div class="block_decouvrir" id="targetCompetiteur">
+			<div class="text_decouvrir">
+				<div>
+					<h2>Ses compétiteurs</h2>
+					<span>
+						L'effectif des compétiteurs avoisine la centaine de personnes. Il se divise en plusieurs catégories s'entrainant et participant ensemble aux diverses régates.<br />
+						&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;La pratique de la compétition est accessible à tout âge et permet de s'essayer dans chacune des différentes formes de ce sport : aviron en individuel ou collectif (de 1 à 8 rameurs), aviron indoor (ergométre), musculation...<br />
+						&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Les déplacements à travers la France sont nombreux au cours de l'année et permettent aux rameurs de se donner des objectifs et de progresser ensemble.
+					</span>
+				</div>
+			</div>
+			<div class="image_decouvrir"><img style="width:100%" src="{{asset('img/decouvrir3.jpg')}}"/>
+			</div>
+		</div>	
+		<div class="block_decouvrir" id="targetLoisir">
+			<div class="text_decouvrir">
+				<div>
+					<h2>Ses loisirs</h2>
+					<span>
+						Accessible à toutes personnes cherchant à garder une activité physique complète sans porter de but premier à la compétition.<br />
+						&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;L'engagement général du groupe permet de rester motivé et de se faire plaisir tout au long de l'année.<br />
+						&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Les Randon'Aviron viennent compléter cette pratique avec des sorties ponctuelles s'étendant sur des journées entières et permettant de découvrir le patrimoine français d'une nouvelle manière.<br />
+						&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;L'aviron saintais possède sa propre randonnée, la Saintongeaise comprenant un allez-retour à St-Savinien avec une halte repas dans un cadre champêtre.
+					</span>
+				</div>
+			</div>
+			<div class="image_decouvrir"><img style="width:100%" src="{{asset('img/decouvrir4.jpg')}}"/>
+			</div>
+		</div>
+	</div>
+	
+{% endblock %}

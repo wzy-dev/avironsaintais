@@ -1,0 +1,15 @@
+fos_ck_editor:
+    default_config:    advanced_config       
+    configs:
+        advanced_config:
+            toolbar: 
+                - [ 'Bold', 'Italic','Underline','Strike','Subscript','Superscript','-','RemoveFormat' ]
+                - [ 'TextColor','BGColor', '-', NumberedList','BulletedList','-','Outdent','Indent','-','Blockquote','-','JustifyLeft','JustifyCenter','JustifyRight','JustifyBlock' ]
+                - [ 'Link','Unlink' ]
+                - [ 'Image','HorizontalRule','Smiley' ]
+                - '/'
+                - ['Cut','Copy','Paste','PasteText','-','Undo','Redo' ]
+                - ['SelectAll' ]
+                - [ 'Maximize' ]
+            filebrowserBrowseRoute:     "elfinder"          
+            contentsCss: ['css/form/style.css']

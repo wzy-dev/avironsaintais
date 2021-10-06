@@ -1,0 +1,13 @@
+{% extends "base.html.twig" %}
+
+{% block title %}
+	Contenu introuvable - {{ parent() }}
+{% endblock %}
+
+{% block body %}
+	<div id="error">
+		<h2>Oops ! Ce contenu n'existe plus...</h2>
+		<p>Celui-ci a probablement était supprimé ou le lien n'est plus valable.</p>
+		<p><a href="{{ path('index') }}">Cliquez ici</a> pour revenir à l'accueil :)</p>
+	</div>
+{% endblock %}

@@ -1,0 +1,21 @@
+vich_uploader:
+    db_driver: orm
+    mappings:
+       article_images:
+           uri_prefix: '%app.path.article_images%'
+           upload_destination: '%kernel.project_dir%/public/%app.path.article_images%'
+           namer: Vich\UploaderBundle\Naming\UniqidNamer
+           delete_on_update: true
+           delete_on_remove: true
+       partenaire_images:
+           uri_prefix: '%app.path.partenaire_images%'
+           upload_destination: '%kernel.project_dir%/public/%app.path.partenaire_images%'
+           namer: Vich\UploaderBundle\Naming\UniqidNamer
+           delete_on_update: true
+           delete_on_remove: true
+       article_pdfs:
+           uri_prefix: '%app.path.article_pdfs%'
+           upload_destination: '%kernel.project_dir%/public/%app.path.article_pdfs%'
+           namer: Vich\UploaderBundle\Naming\OrignameNamer
+           delete_on_update: true
+           delete_on_remove: true

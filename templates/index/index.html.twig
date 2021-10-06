@@ -1,0 +1,662 @@
+{% extends "base.html.twig" %}
+
+{% block title %}
+	Accueil -
+	{{ parent() }}
+{% endblock %}
+
+{% block body %}
+
+	<div id="banner">
+		<img src="{{asset('img/logo.png')}}" id="logo" style="position:absolute;left:5%;height:0px;opacity:1"/>
+		<div>
+			<h1>Club d'Aviron Saintais</h1>
+			<span>Son histoire, son fonctionnement, ses coordonnées...</span>
+			<a href="{{ path('decouvrir') }}" class="button">Découvrir le club</a>
+		</div>
+	</div>
+
+	<div id="body">
+		<div>
+			<h2 id="targetActualités">Actualités</h2>
+			<div id="news" class="body_block">
+				<div
+					id="news_large" class="flexBox">
+					<!-- 					<a class="linktest flexBox" id="fb_link" href="#">
+																														<div class="news_block flexBox" id="fb_block">
+																															<div id="fb_img"></div>
+																															<div class="news_text" id="fb_text">
+																																<div class="news_title"><span style="font-weight:bold;color:#3B5998">facebook</span><span style="font-weight:bold;font-size:0.9em;color:#c9c9c9" id="fb_date"> / </span></div>
+																															</div>
+																														</div>
+																														</a> -->
+					{% set mois = {01:"janv", 02:"févr", 03:"mars", 04:"avr", 05:"mai", 06:"juin", 07:"juill", 08:"août", 09:"sept", 10:"oct", 11:"nov", 12:"déc"} %}
+					<a class="linktest flexBox" href="{{ path('article', {'id': articleAttached.id}) }}">
+						<div style="background-image: url( {{ articleAttached.image.absolutePath }}); background-size: 100%, 100%; background-position: center; background-repeat: no-repeat;" class="news_block flexBox"></div>
+					</a>
+					{% for article in articles %}
+						<a class="linktest flexBox" href="{{ path('article', {'id': article.id}) }}">
+							<div class="news_block flexBox">
+								{% if article.image %}
+									<div><img style="width:100%;" src="{{ article.image.absolutePath | imagine_filter('miniature') }}"></div>
+								{% endif %}
+								<div class="news_text">
+									<div class="news_title">
+										<span style="font-weight:bold;color:#018EB2">web</span>
+										<span style="font-weight:bold;font-size:0.9em;color:#c9c9c9">
+											/
+											{{ article.date|date("d") }}
+											{{ mois[article.date|date("m")|round] }}
+											{{ article.date|date("Y") }}</span>
+										<h4 style="font-weight:bold;margin: 5px 0 0px 0;">{{ article.title }}</h4>
+									</div>
+									<span>{{ article.text|striptags|truncate(280, true, '...')|raw }}</span>
+								</div>
+							</div>
+						</a>
+					{% endfor %}
+					<a class="linktest flexBox news_block_all" href="{{ path('articles') }}">
+						<div class="news_block flexBox">
+							<span class="news_block_center flexBox">
+								<span class="icon-newspaper"></span>
+								<span>Voir toute les actualités</span>
+							</span>
+						</div>
+					</a>
+				</div>
+			</div>
+		</div>
+		<div>
+			<h2 id="targetDécouvrir">Découvrir</h2>
+			<div class="content_part flexBox" id="decouvrir">
+				<div>
+					<span>
+						<p>Le club d'aviron saintais a été créé en 1862. Il se situe au bord de la Charente et offre aux rameurs un cadre idéal. Il est affilié à la Fédération Française d'Aviron et bénéficie du titre d'École française d'aviron 3 étoiles.
+						</p>
+						<p>Cliquez-ci dessous pour tout connaitre sur le club : son histoire, son fonctionnement, ses coordonnées...
+						</p>
+						<p style="text-align:center">
+							<a href="{{ path('decouvrir') }}" class="button">Découvrir le club</a>
+						</p>
+					</span>
+				</div>
+				<div>
+					<img style="width:100%" src="{{asset('img/1.jpg')}}"/>
+				</div>
+			</div>
+		</div>
+		<div>
+			<h2 id="targetCoordonnees">Coordonnées</h2>
+			<div class="content_part flexBox" id="coordonnees">
+				<div>
+					<iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2783.8149070213326!2d-0.629873785164622!3d45.7548565220239!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x48011d4e75ab8ab9%3A0x84c07ae296d52ba7!2sClub+Aviron+Saintais+Club!5e0!3m2!1sfr!2sfr!4v1466842063660" style="width:100%;height:100%;min-height:200px;" frameborder="0" style="border:0" allowfullscreen></iframe>
+				</div>
+				<div>
+					<span>
+						<p>
+							<span class="icon-envelop"></span>
+							<a class="contact_club" href="mailto:clubavironsaintais@yahoo.fr">clubavironsaintais@yahoo.fr</a>
+						</p>
+						<p>
+							<span class="icon-phone"></span>
+							05 46 74 01 66
+							<i>(bureau)</i>
+						</p>
+						<p>
+							<span class="icon-phone"></span>
+							06 35 53 83 43
+							<i>(entraineurs)</i>
+						</p>
+						<p>
+							<span class="icon-location"></span>
+							6 rue de Courbiac - 17100 Saintes
+						</p>
+						<p id="icon_social">
+							<a href="https://www.instagram.com/aviron.saintais/">
+								<span class="icon-instagram"></span>
+							</a>
+							<a href="https://www.facebook.com/Aviron-Saintais-393337914138096">
+								<span class="icon-facebook"></span>
+							</a>
+							<a href="https://www.flickr.com/photos/avironsaintais">
+								<span class="icon-social-flickr-circular"></span>
+							</a>
+						</p>
+					</span>
+				</div>
+			</div>
+		</div>
+		<div>
+			<h2 id="targetGalerie">Galerie</h2>
+			<div class="content_part flexBox">
+				<div id="galerie"><img src="{{asset('img/loader.gif')}}" style="display:block;width:100px;margin:auto" id="loader"/></div>
+				<div class="Galerie-index" style="display:block">
+					<a href="{{ path('galerie') }}">
+						<span class="galerie_btn">
+							<span style="padding:5%">
+								<span class="icon-images"></span>
+								<span>Voir toute la galerie</span>
+							</span>
+						</span>
+					</a>
+				</div>
+			</div>
+		</div>
+		<div>
+			<h2 id="targetCompetition">Compétition</h2>
+			<div class="content_part flexBox" id="competition">
+				<div>
+					<span>
+						<p>En quête de challenge ? Avec un groupe de compétiteurs avoisinant les 100 personnes, de nombreux déplacements à travers la France et plusieurs médaillés à l'échelle nationale, le club d'aviron saintais permet aux enfants agés de 11 ans et plus ainsi qu'aux adultes de ce former et de progresser dans cette pratique au moyen d'une émulation.
+						</p>
+						<p style="text-align:center">
+							<a href="{{ path('decouvrir') }}#targetCompetiteur" class="button">En savoir plus</a>
+						</p>
+					</span>
+				</div>
+				<div>
+					<img style="width:100%" src="{{asset('img/2.jpg')}}"/>
+				</div>
+			</div>
+		</div>
+		<div>
+			<h2 id="targetLoisir">Loisir</h2>
+			<div class="content_part flexBox" id="loisir">
+				<div>
+					<span>
+						<p>Progressez dans un cadre idyllique et varié, de l'arc de Germanicus aux campagnes charentaises, tout en pratiquant à votre rythme une activité compléte dans une ambiance agréable.
+						</p>
+						<p>En plus des séances d'entrainement exclusivement réservées à la catégorie loisir et encadrées par un entraineur, participez aux Randon'Aviron tel que la Saintongeaise reliant Saintes à St-Savinien (journée entière avec halte repas).
+						</p>
+						<p style="text-align:center">
+							<a href="{{ path('decouvrir') }}#targetLoisir" class="button">En savoir plus</a>
+						</p>
+					</span>
+				</div>
+				<div>
+					<img style="width:100%" src="{{asset('img/3.jpg')}}"/>
+				</div>
+			</div>
+		</div>
+		<div>
+			<h2 id="targetAvifit">AviFit</h2>
+			<div class="content_part flexBox" id="avifit">
+				<div>
+					<iframe id="avifitYt" src="https://www.youtube.com/embed/PYUIi81coDY" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
+				</div>
+				<div>
+					<span>
+						<p>Nouvelle pratique en aviron indoor, l'AviFit vous permettra de rester en forme en vous amusant : suivez votre coach qui vous propose des exercices simples, variés et efficaces sur de la musique entraînante ! Une expérience collective unique !
+						</p>
+						<p style="text-align:center">
+							<a href="http://avifit.weebly.com/" class="button">Plus d'informations sur le site officiel</a>
+						</p>
+					</span>
+				</div>
+			</div>
+		</div>
+		<div>
+			<h2 id="targetSs">Sport - Santé</h2>
+			<div class="content_part flexBox" id="ss">
+				<div>
+					<span>
+						<p>Le Club d’Aviron Saintais est habilité à intervenir dans le cadre du programme « sport santé bien être ». A ce titre le club propose déjà une activité physique adaptée et progressive à des personnes porteuses de pathologies chroniques et de handicaps ou aux personnes à facteur de risques.
+						</p>
+						<p style="text-align:center">
+							<a href="{{ asset('pdf/sportsante.pdf') }}" class="button" download="Sport Santé">Voir notre dossier de presse</a>
+						</p>
+					</span>
+				</div>
+				<div>
+					<img style="width:100%" src="{{asset('img/5.jpg')}}"/>
+				</div>
+			</div>
+		</div>
+		<div>
+			<h2 id="targetHoraires">Horaires</h2>
+			<div class="content_part flexBox" id="horaires">
+				<table id="horaires_desktop">
+					<tr>
+						<th>
+							<span class="icon-calendar"></span>
+						</th>
+						<th>Lundi
+						</th>
+						<th>Mardi
+						</th>
+						<th>Mercredi
+						</th>
+						<th>Jeudi
+						</th>
+						<th>Vendredi
+						</th>
+						<th>Samedi
+						</th>
+						<th>Dimanche
+						</th>
+					</tr>
+					<tr>
+						<td style="text-align:center">
+							<span class="icon-award"></span><br/>Competiteurs
+						</td>
+						<td>18h - 20h
+						</td>
+						<td>14h - 20h
+						</td>
+						<td>13h30 - 20h
+						</td>
+						<td>14h - 20h
+						</td>
+						<td>14h30 - 20h
+						</td>
+						<td>9h - 12h / 13h30 - 18h
+						</td>
+						<td>9h - 12h30
+						</td>
+					</tr>
+					<tr style="background:rgba(3, 203, 255, 0.05)">
+						<td style="text-align:center">
+							<span class="icon-thumb-up"></span><br/>Loisirs
+						</td>
+						<td>Ø
+						</td>
+						<td>Ø
+						</td>
+						<td>18h - 20h
+						</td>
+						<td>Ø
+						</td>
+						<td>Ø
+						</td>
+						<td>9h - 12h
+						</td>
+						<td>9h - 12h*
+						</td>
+					</tr>
+					<tr>
+						<td style="text-align:center">
+							<span class="icon-weights"></span><br/>AviFit
+						</td>
+						<td>17h30 & 18h30
+						</td>
+						<td>Ø
+						</td>
+						<td>18h30
+						</td>
+						<td>Ø
+						</td>
+						<td>17h30
+						</td>
+						<td>Ø
+						</td>
+						<td>Ø
+						</td>
+					</tr>
+					<tr>
+						<td style="text-align:center">
+							<span class="icon-heart"></span><br/>Sport - Santé
+						</td>
+						<td>Ø
+						</td>
+						<td>10h - 12h
+						</td>
+						<td>Ø
+						</td>
+						<td>14h - 16h
+						</td>
+						<td>10h - 12h
+						</td>
+						<td>Ø
+						</td>
+						<td>Ø
+						</td>
+					</tr>
+				</table>
+				<div id="horaires_large" class="flexBox" style="width:400%;position:relative;left:0;transition:1s;">
+					<table class="horaires_mobile">
+						<tr>
+							<th>
+								<span class="icon-calendar"></span>
+							</th>
+							<td>
+								<span class="icon-award"></span>
+								Competiteurs
+							</td>
+						</tr>
+						<tr>
+							<th>Lundi
+							</th>
+							<td>18h - 20h
+							</td>
+						</tr>
+						<tr>
+							<th>Mardi
+							</th>
+							<td>14h - 20h
+							</td>
+						</tr>
+						<tr>
+							<th>Mercredi
+							</th>
+							<td>13h30 - 20h
+							</td>
+						</tr>
+						<tr>
+							<th>Jeudi
+							</th>
+							<td>14h - 20h
+							</td>
+						</tr>
+						<tr>
+							<th>Vendredi
+							</th>
+							<td>14h30 - 20h
+							</td>
+						</tr>
+						<tr>
+							<th>Samedi
+							</th>
+							<td>9h - 12h / 12h30 - 18h
+							</td>
+						</tr>
+						<tr>
+							<th>Dimanche
+							</th>
+							<td>9h - 12h30
+							</td>
+						</tr>
+					</table>
+					<table class="horaires_mobile">
+						<tr>
+							<th>
+								<span class="icon-calendar"></span>
+							</th>
+							<td>
+								<span class="icon-thumb-up"></span>
+								Loisirs
+							</td>
+						</tr>
+						<tr>
+							<th>Lundi
+							</th>
+							<td>Ø
+							</td>
+						</tr>
+						<tr>
+							<th>Mardi
+							</th>
+							<td>Ø
+							</td>
+						</tr>
+						<tr>
+							<th>Mercredi
+							</th>
+							<td>18h - 20h
+							</td>
+						</tr>
+						<tr>
+							<th>Jeudi
+							</th>
+							<td>Ø
+							</td>
+						</tr>
+						<tr>
+							<th>Vendredi
+							</th>
+							<td>Ø
+							</td>
+						</tr>
+						<tr>
+							<th>Samedi
+							</th>
+							<td>9h - 12h
+							</td>
+						</tr>
+						<tr>
+							<th>Dimanche
+							</th>
+							<td>9h - 12h*
+							</td>
+						</tr>
+					</table>
+					<table class="horaires_mobile">
+						<tr>
+							<th>
+								<span class="icon-calendar"></span>
+							</th>
+							<td>
+								<span class="icon-weights"></span>
+								AviFit
+							</td>
+						</tr>
+						<tr>
+							<th>Lundi
+							</th>
+							<td>17h30 & 18h30
+							</td>
+						</tr>
+						<tr>
+							<th>Mardi
+							</th>
+							<td>Ø
+							</td>
+						</tr>
+						<tr>
+							<th>Mercredi
+							</th>
+							<td>18h30
+							</td>
+						</tr>
+						<tr>
+							<th>Jeudi
+							</th>
+							<td>Ø
+							</td>
+						</tr>
+						<tr>
+							<th>Vendredi
+							</th>
+							<td>17h30
+							</td>
+						</tr>
+						<tr>
+							<th>Samedi
+							</th>
+							<td>Ø
+							</td>
+						</tr>
+						<tr>
+							<th>Dimanche
+							</th>
+							<td>Ø
+							</td>
+						</tr>
+					</table>
+					<table class="horaires_mobile">
+						<tr>
+							<th>
+								<span class="icon-calendar"></span>
+							</th>
+							<td>
+								<span class="icon-heart"></span>
+								Sport - Santé
+							</td>
+						</tr>
+						<tr>
+							<th>Lundi
+							</th>
+							<td>Ø
+							</td>
+						</tr>
+						<tr>
+							<th>Mardi
+							</th>
+							<td>10h - 12h
+							</td>
+						</tr>
+						<tr>
+							<th>Mercredi
+							</th>
+							<td>Ø
+							</td>
+						</tr>
+						<tr>
+							<th>Jeudi
+							</th>
+							<td>14h - 16h
+							</td>
+						</tr>
+						<tr>
+							<th>Vendredi
+							</th>
+							<td>10h - 12h
+							</td>
+						</tr>
+						<tr>
+							<th>Samedi
+							</th>
+							<td>Ø
+							</td>
+						</tr>
+						<tr>
+							<th>Dimanche
+							</th>
+							<td>Ø
+							</td>
+						</tr>
+					</table>
+				</div>
+				<div id="option_mobile">
+					<p>Trouver les horaires par catégorie :</p>
+					<form id="choisir_section">
+						<table style="background: none;box-shadow: none;margin: 0;width: 84%;margin-top:1em;margin-left: 8%;list-style: none;">
+							<tr>
+								<td style="padding:0 0 1em 0;text-align:left"><input style="margin: 3px 3px 3px 0" checked type="radio" name="section" id="section_competition" value="0"/><label for="section_competition">Compétition</label>
+								</td>
+								<td style="padding:0 0 1em 0;text-align:right"><input style="margin: 3px 3px 3px 0" type="radio" name="section" id="section_loisir" value="1"/><label for="section_loisir">Loisir</label>
+								</td>
+							</tr>
+							<tr>
+								<td style="padding:0;text-align:left"><input style="margin: 3px 3px 3px 0" type="radio" name="section" id="section_avifit" value="2"/><label for="section_avifit">AviFit</label>
+								</td>
+								<td style="padding:0;text-align:right"><input style="margin: 3px 3px 3px 0" type="radio" name="section" id="section_sets" value="3"/><label for="section_sets">Sport - Santé</label>
+								</td>
+							</tr>
+						</table>
+					</form>
+				</div>
+				<p>
+					*Pour les Loisirs confirmés (savoir, considérés autonomes par les entraineurs).
+				</p>
+				<p>
+					**L’attention de nos pratiquants est attirée sur le fait qu’il faut toujours regarder dans la rubrique « actualités » ci-dessus pour tout changement exceptionnel des horaires.
+				</p>
+			</div>
+		</div>
+		<div>
+			<h2 id="targetPartenaires">Partenaires</h2>
+			<div class="content_part flexBox" id="partenaire" style="width:84%;margin:auto; flex-wrap: wrap">
+				{% for partenaire in partenaires %}
+					<a class="logo_partenaire" href="{{ partenaire.url }}">
+						<div style="margin:auto;display:block;width:100%"><img alt="{{ partenaire.name }}" src="{{ asset(partenaire.absolutePath) }}"/></div>
+					</a>
+				{% endfor %}
+				<a class="logo_partenaire" href="{{ asset('pdf/partenaire.pdf') }}" download="Devenir partenaire">
+					<div style="margin:auto;display:block;width:100%"><img alt="Devenir partenaire" src="{{ asset('img/partenaire.png') }}"/></div>
+				</a>
+			</div>
+		</div>
+		<div>
+			<h2 id="targetCanoe">Canoë</h2>
+			<div class="content_part flexBox" id="canoe">
+				<div>
+					<span>
+						<p>Envie de découvrir Saintes et la Charente différemment ? Montez à bord de canoës d'une ou deux places louables tout l'été au club.
+						</p>
+						<p>Venez découvrir une faune, une flore et de nombreux monuments historiques le long de votre parcours en direction de Chaniers ou Bussac sur Charente, et cela à votre rythme !
+						</p>
+						<p>Location de 14 à 18h du mardi au samedi en juillet.
+						</p>
+						<p>Location de 14 à 18h le jeudi et le vendredi en août.</p>
+						<p>18€ le canoë simple et 27€ le canoë double.</p>
+					</p>
+					<p>Merci de nous contacter par mail pour réserver à l'adresse :
+						<a class="contact_club" href="mailto:canoe.aviron17@gmail.com">canoe.aviron17@gmail.com</a>
+					</p>
+				</span>
+			</div>
+			<div>
+				<img style="width:100%" src="{{asset('img/4.jpg')}}"/>
+			</div>
+		</div>
+	</div>
+</div>{% endblock %}{% block javascripts %}
+<script src="{{ asset('js/galerieIndex.js') }}"></script>
+<script>
+	// window.fbAsyncInit = function() {
+//     FB.init({
+//       appId            : '204087879970953',
+//       autoLogAppEvents : true,
+//       xfbml            : true,
+//       version          : 'v3.1'
+//     });
+
+// FB.api(
+// '/393337914138096/posts',
+// 'GET',
+// {"fields":"from,message,updated_time,full_picture,picture","limit":"1","access_token":"EAAC5nemWsIkBABYIq4evuiwZBwJc2gHXgnclMNpZBLTvvWgj23h37TyQFvkXW8r3B13RZBA4mOlcm3JCsRKW7trAz7WNDH1xIX0EhnwjjrSwIAgOmRxg1AfscpF0kZCD6lMmFPRgmVqVgvy5VG5TrchAAGljPxLR42W9SBEeQZCd24pvhqNge7gcaPTBoHWMZD"},
+// function(response) {
+// graph=response;
+// var date = graph.data[0].updated_time.split('T');
+// date = date[0].split('-');
+// var mois = new Array("janv", "févr", "mars", "avr", "mai", "juin", "juill", "août", "sept", "oct", "nov", "déc");
+// date = date[2]+' '+mois[date[1]-1]+' '+date[0];
+// if (graph.data[0].full_picture) {
+// $('#fb_img').append('<img style="width:100%" src="'+graph.data[0].full_picture+'"/>');
+// }
+// if (graph.data[0].message.length <= 280) {
+// var text = graph.data[0].message;
+// } else {
+// var text = graph.data[0].message.substring(0,280)+'...';
+// }
+// $('#fb_text').append('<span>'+text+'</span>');
+// $('#fb_date').append(date);
+// $('#fb_link').attr('href','https://www.facebook.com/permalink.php?story_fbid='+graph.data[0].id.split("_")[1]+'&id=393337914138096');
+// }
+// );
+// };
+
+// (function(d, s, id){
+//     var js, fjs = d.getElementsByTagName(s)[0];
+//     if (d.getElementById(id)) {return;}
+//     js = d.createElement(s); js.id = id;
+//     js.src = "https://connect.facebook.net/en_US/sdk.js";
+//     fjs.parentNode.insertBefore(js, fjs);
+// }(document, 'script', 'facebook-jssdk'));
+
+$(document).ready(function () {
+$('#menu_mobile a').click(function (e) {
+var the_id = $(this).attr("href").split('#');
+
+$('html, body').animate({
+scrollTop: $('#' + the_id[1]).offset().top
+}, 'normal');
+return false;
+});
+$('#menu_desktop a').click(function (e) {
+var the_id = $(this).attr("href").split('#');
+
+$('html, body').animate({
+scrollTop: $('#' + the_id[1]).offset().top
+}, 'normal');
+return false;
+});
+
+$('#logo').height($('#banner').height() * 0.70);
+$('#logo').css('margin-top', $('#banner').height() * 0.15);
+
+if ($(window).width() < 992) {
+$('#logo').css("opacity", 0.5);
+}
+});
+</script>{% endblock %}
