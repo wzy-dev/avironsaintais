@@ -17,11 +17,13 @@ class IndexController extends Controller
     public function indexAction()
     {
 		$em = $this->getDoctrine()->getManager();
-		$articleAttached=$em->getRepository(Article::class)->find(25);
-		$articles=$em->getRepository(Article::class)->findByWithoutId(25);
+		//$articleAttached=$em->getRepository(Article::class)->find(25);
+		//$articles=$em->getRepository(Article::class)->findByWithoutId(25);
+		$articles=$em->getRepository(Article::class)->findBy(array(), array('id' => 'desc'), 3, 0);
 		$partenaires=$em->getRepository(Partenaire::class)->findAll();
 
-        return $this->render('index/index.html.twig',array('articleAttached'=>$articleAttached,'articles'=>$articles,'partenaires'=>$partenaires));
+		return $this->render('index/index.html.twig',array('articles'=>$articles,'partenaires'=>$partenaires));
+        //return $this->render('index/index.html.twig',array('articleAttached'=>$articleAttached,'articles'=>$articles,'partenaires'=>$partenaires));
     }	
 
     /**

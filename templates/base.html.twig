@@ -30,7 +30,7 @@
 		<div id="menu_desktop" class="flexBox">
 		<a href="{{ path('index') }}" id="home" class="flexBox"><img src="{{ asset('img/favicon.png') }}"/><span>Accueil</span></a>
 		<ul>
-			<li><a href="{{ path('article', {'id': 25}) }}">Marathon INDOOR</a></li>
+			{# <li><a href="{{ path('article', {'id': 25}) }}">Marathon INDOOR</a></li> #}
 			<li><a class="ancre" href="{{ app.request.getBaseURL() }}/#targetActualités">Actualités</a></li>
 			<li><a href="{{ app.request.getBaseURL() }}/#targetDécouvrir">Découvrir</a></li>
 			<li><a href="{{ app.request.getBaseURL() }}/#targetCoordonnees">Coordonnées</a></li>
@@ -53,7 +53,7 @@
 			<li><span><a href="{{ app.request.getBaseURL() }}/#targetCompetition">Compétition</a></span><span><a href="{{ app.request.getBaseURL() }}/#targetLoisir">Loisir</a></span></li>
 			<li><span><a href="{{ app.request.getBaseURL() }}/#targetAvifit">AviFit</a></span><span><a href="{{ app.request.getBaseURL() }}/#targetSs">Sport - Santé</a></span></li>
 			<li><span><a href="{{ app.request.getBaseURL() }}/#targetHoraires">Horaires</a></span><span><a href="{{ app.request.getBaseURL() }}/#targetPartenaires">Partenaires</a></span></li>
-			<li><span><a href="{{ app.request.getBaseURL() }}/#targetCanoe">Canoë</a></span><span><a href="{{ path('article', {'id': 25}) }}">Marathon INDOOR</a></span></li>
+			<li><span><a href="{{ app.request.getBaseURL() }}/#targetCanoe">Canoë</a></span>{#<span><a href="{{ path('article', {'id': 25}) }}">Marathon INDOOR</a></span>#}</li>
 		</ul>
 		</div>
 	</header>		

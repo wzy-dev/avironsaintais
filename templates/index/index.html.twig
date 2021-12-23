@@ -31,9 +31,9 @@
 																														</div>
 																														</a> -->
 					{% set mois = {01:"janv", 02:"févr", 03:"mars", 04:"avr", 05:"mai", 06:"juin", 07:"juill", 08:"août", 09:"sept", 10:"oct", 11:"nov", 12:"déc"} %}
-					<a class="linktest flexBox" href="{{ path('article', {'id': articleAttached.id}) }}">
+					{# <a class="linktest flexBox" href="{{ path('article', {'id': articleAttached.id}) }}">
 						<div style="background-image: url( {{ articleAttached.image.absolutePath }}); background-size: 100%, 100%; background-position: center; background-repeat: no-repeat;" class="news_block flexBox"></div>
-					</a>
+					</a> #}
 					{% for article in articles %}
 						<a class="linktest flexBox" href="{{ path('article', {'id': article.id}) }}">
 							<div class="news_block flexBox">
